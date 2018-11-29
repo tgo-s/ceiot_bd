@@ -1,0 +1,6 @@
+# mysql.cnf
+[client]
+database = ceiot
+user = thiago
+password = 123
+default-character-set = latin1
