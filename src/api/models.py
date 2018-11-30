@@ -2,6 +2,9 @@ from django.db import models
 
 # Create your models here.
 class Edificio(models.Model):
+    class Meta:
+        db_table = 'edificio'
+
     edificioId     = models.AutoField(primary_key=True)
     nome           = models.CharField(max_length=50)
     dataConstrucao = models.DateField()
@@ -11,6 +14,9 @@ class Edificio(models.Model):
     pass
 
 class Endereco(models.Model):
+    class Meta:
+        db_table = 'endereco'
+
     enderecoId  = models.AutoField(primary_key=True)
     edificioId  = models.ForeignKey(Edificio,on_delete=models.PROTECT)
     cidade      = models.CharField(max_length=50)
@@ -26,6 +32,9 @@ class Endereco(models.Model):
     pass
 
 class Apartamento(models.Model):
+    class Meta:
+        db_table = 'apartamento'
+
     apartamentoId = models.AutoField(primary_key=True)
     edificioId    = models.ForeignKey(Edificio, on_delete=models.PROTECT)
     bloco         = models.CharField(max_length=5)
@@ -38,6 +47,9 @@ class Apartamento(models.Model):
     pass
 
 class Dispositivo(models.Model):
+    class Meta:
+        db_table = 'dispositivo'
+
     dispositivoId  = models.AutoField(primary_key=True)
     apartamentoId  = models.ForeignKey(Apartamento, on_delete=models.PROTECT)
     marca          = models.CharField(max_length=150)
@@ -49,6 +61,9 @@ class Dispositivo(models.Model):
     pass
 
 class TipoMedicao(models.Model):
+    class Meta:
+        db_table = 'tipoMedicao'
+
     tipoMedicaoId   = models.AutoField(primary_key=True)
     nome            = models.CharField(max_length=100)
     unidadeMedida   = models.CharField(max_length=5)
@@ -59,9 +74,13 @@ class TipoMedicao(models.Model):
     pass
 
 class Medicao(models.Model):
+    class Meta:
+        db_table = 'medicao'
+
     medicaoId     = models.AutoField(primary_key=True)
     dispositivoId = models.ForeignKey(Dispositivo, on_delete=models.PROTECT)
     tipoMedicaoId = models.ForeignKey(TipoMedicao,on_delete=models.PROTECT)
-    data          = models.DateTimeField()
+    dataMedicao   = models.DateTimeField()
     valorMedido   = models.DecimalField(max_digits=18, decimal_places=2)
+
     pass
