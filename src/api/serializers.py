@@ -27,10 +27,10 @@ class DispositivoSerializer(serializers.ModelSerializer):
 class TipoMedicaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoMedicao
-        fields = ('tipoMedicaoId', 'nome','unidadeMedida', 'valorPorUnidade')        
+        fields = ('tipoMedicaoId', 'nome', 'unidadeMedida', 'valorPorUnidade')
 
 class MedicaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medicao
-        fields = ('medicaoId', 'tipoMedicaoId','data','valorMedido')
+        fields = ('medicaoId', 'tipoMedicaoId', 'data', 'valorMedido')
         

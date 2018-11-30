@@ -12,7 +12,7 @@ class Edificio(models.Model):
 
 class Endereco(models.Model):
     enderecoId  = models.AutoField(primary_key=True)
-    edificioId  = models.ForeignKey(Edificio, on_delete=models.PROTECT)
+    edificioId  = models.ForeignKey(Edificio,on_delete=models.PROTECT)
     cidade      = models.CharField(max_length=50)
     estado      = models.CharField(max_length=50)
     bairro      = models.CharField(max_length=50)
@@ -60,6 +60,7 @@ class TipoMedicao(models.Model):
 
 class Medicao(models.Model):
     medicaoId     = models.AutoField(primary_key=True)
+    dispositivoId = models.ForeignKey(Dispositivo, on_delete=models.PROTECT)
     tipoMedicaoId = models.ForeignKey(TipoMedicao,on_delete=models.PROTECT)
     data          = models.DateTimeField()
     valorMedido   = models.DecimalField(max_digits=18, decimal_places=2)
