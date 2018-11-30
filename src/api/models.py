@@ -18,7 +18,7 @@ class Endereco(models.Model):
         db_table = 'endereco'
 
     enderecoId  = models.AutoField(primary_key=True)
-    edificioId  = models.ForeignKey(Edificio,on_delete=models.PROTECT)
+    edificioId  = models.ForeignKey(Edificio, db_column='edificioId',on_delete=models.PROTECT)
     cidade      = models.CharField(max_length=50)
     estado      = models.CharField(max_length=50)
     bairro      = models.CharField(max_length=50)
@@ -36,7 +36,7 @@ class Apartamento(models.Model):
         db_table = 'apartamento'
 
     apartamentoId = models.AutoField(primary_key=True)
-    edificioId    = models.ForeignKey(Edificio, on_delete=models.PROTECT)
+    edificioId    = models.ForeignKey(Edificio, db_column='edificioId', on_delete=models.PROTECT)
     bloco         = models.CharField(max_length=5)
     andar         = models.IntegerField()
     numero        = models.CharField(max_length=5)
@@ -51,7 +51,7 @@ class Dispositivo(models.Model):
         db_table = 'dispositivo'
 
     dispositivoId  = models.AutoField(primary_key=True)
-    apartamentoId  = models.ForeignKey(Apartamento, on_delete=models.PROTECT)
+    apartamentoId  = models.ForeignKey(Apartamento, db_column='apartamentoId', on_delete=models.PROTECT)
     marca          = models.CharField(max_length=150)
     modelo         = models.CharField(max_length=150)
     dataInstalacao = models.DateField()
@@ -78,8 +78,8 @@ class Medicao(models.Model):
         db_table = 'medicao'
 
     medicaoId     = models.AutoField(primary_key=True)
-    dispositivoId = models.ForeignKey(Dispositivo, on_delete=models.PROTECT)
-    tipoMedicaoId = models.ForeignKey(TipoMedicao,on_delete=models.PROTECT)
+    dispositivoId = models.ForeignKey(Dispositivo, db_column='dispositivoId', on_delete=models.PROTECT)
+    tipoMedicaoId = models.ForeignKey(TipoMedicao, db_column='tipoMedicaoId', on_delete=models.PROTECT)
     dataMedicao   = models.DateTimeField()
     valorMedido   = models.DecimalField(max_digits=18, decimal_places=2)
 
